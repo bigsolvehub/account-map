@@ -1,0 +1,17 @@
+<template>
+
+    <lightning-card title="Account Map" icon-name="action:map">
+
+        <div class="slds-p-around_small">
+
+            <template if:true={accounts}>
+
+                <lightning-map map-markers={mapMarkers} markers-title="Customers"></lightning-map>
+            
+            </template>
+
+        </div>
+        
+    </lightning-card>
+
+</template>
