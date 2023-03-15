@@ -1,5 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import LOCALE from '@salesforce/i18n/locale';
+import CURRENCY from '@salesforce/i18n/currency';
 import getCustomers from '@salesforce/apex/AccountMapController.getCustomers';
 
 export default class AccountMap extends NavigationMixin(LightningElement) {
@@ -16,8 +18,14 @@ export default class AccountMap extends NavigationMixin(LightningElement) {
 
             this.accounts.forEach(acc =>{
 
-                let wonOpportunityAmount = acc.Won_Opportunity_Amount__c ? new Intl.NumberFormat().format(acc.Won_Opportunity_Amount__c) : new Intl.NumberFormat().format(0);
+                // Handle null values
+                let formattedWonOpptyAmt = new Intl.NumberFormat(LOCALE, {
+                    style: 'currency',
+                    currency: CURRENCY,
+                    currencyDisplay: 'symbol'
+                }).format(acc.Won_Opportunity_Amount__c);
 
+                // Plot markers
                 this.mapMarkers.push({
                     location: {
                         Street : acc.BillingStreet,
@@ -29,7 +37,7 @@ export default class AccountMap extends NavigationMixin(LightningElement) {
                         Latitude : acc.BillingLongitude
                     },
                     title : acc.Name,
-                    description : 'Won Opportunity Amount: $' + wonOpportunityAmount,
+                    description : `Won Opportunity Amount: ${formattedWonOpptyAmt}`,
                     icon: 'standard:account'
                 });
 
