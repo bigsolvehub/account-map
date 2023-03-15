@@ -4,10 +4,20 @@
 
         <div class="slds-p-around_small">
 
-            <template if:true={accounts}>
+            <template lwc:if={accounts}>
 
+                <!-- Map -->
                 <lightning-map map-markers={mapMarkers} markers-title="Customers"></lightning-map>
             
+            </template>
+
+            <template lwc:elseif={error}>
+
+                <!-- Error Message -->
+                <div class="slds-text-color_destructive slds-align_absolute-center">
+                    <p> <lightning-formatted-text value={error}></lightning-formatted-text> </p>
+                </div>
+
             </template>
 
         </div>
