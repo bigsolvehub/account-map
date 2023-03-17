@@ -25,9 +25,14 @@ private class AccountMapControllerTest {
         // Insert Accounts
         insert accts;
         
-       // Invoke Get Customer method
-       List<Account> customers = AccountMapController.getCustomers();
+        Test.startTest();
+
+        // Invoke Get Customer method
+        List<Account> customers = AccountMapController.getCustomers();
         
+        Test.stopTest();
+
+        System.assert(customers.size() == 10);
         
     }
     
