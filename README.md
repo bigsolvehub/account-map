@@ -1,18 +1,16 @@
-# Salesforce DX Project: Next Steps
+## Account Map Lightning Web Component
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Develop a map of customers based on Billing Addresses that displays Won Opportunity Amounts.
 
-## How Do You Plan to Deploy Your Changes?
+To handle this request, we're going to create a Lightning Web Component that plots Account data on a lightning-map component. The component will invoke an Apex method via the wire service.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## High-level steps:
 
-## Configure Your Salesforce DX Project
+1. Create Roll-Up Summary Field on Account to display Won Opportunity Amount
+2. Enable "Geocodes for Account Billing Address" Data Integration Rule
+3. Create `AccountMapController` Apex Class
+4. Create `accountMap` Lightning Web Component
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+## Step-by-Step Guide:
 
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+Check out [our blog](https://www.bigsolve.com/blog/account-map-lightning-web-component) for an instructional guide on building this component.
