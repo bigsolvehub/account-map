@@ -18,12 +18,17 @@ export default class AccountMap extends NavigationMixin(LightningElement) {
 
             this.accounts.forEach(acc =>{
 
-                // Handle null values
-                let formattedWonOpptyAmt = new Intl.NumberFormat(LOCALE, {
-                    style: 'currency',
-                    currency: CURRENCY,
-                    currencyDisplay: 'symbol'
-                }).format(acc.Won_Opportunity_Amount__c);
+                let description = `Industry: ${acc.Industry}`;
+
+                // Check for access to Won Opportunity Amount and format according to locale
+                if(acc.Won_Opportunity_Amount__c) {
+                    let formattedWonOpptyAmt = new Intl.NumberFormat(LOCALE, {
+                        style: 'currency',
+                        currency: CURRENCY,
+                        currencyDisplay: 'symbol'
+                    }).format(acc.Won_Opportunity_Amount__c);
+                    description += `<br> Won Opportunity Amount: ${formattedWonOpptyAmt}`;
+                }
 
                 // Plot markers
                 this.mapMarkers.push({
@@ -37,7 +42,7 @@ export default class AccountMap extends NavigationMixin(LightningElement) {
                         Latitude : acc.BillingLongitude
                     },
                     title : acc.Name,
-                    description : `Won Opportunity Amount: ${formattedWonOpptyAmt}`,
+                    description : description,
                     icon: 'standard:account'
                 });
 
